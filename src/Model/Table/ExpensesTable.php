@@ -16,8 +16,8 @@ class ExpensesTable extends Table
 
         $this->setDisplayField('description');
 
-        $this->belongsTo('Account');
-        $this->belongsTo('ExpenseType');
+        $this->belongsTo('Accounts');
+        $this->belongsTo('ExpenseTypes');
     }
 
     public function validationDefault(Validator $validator): Validator

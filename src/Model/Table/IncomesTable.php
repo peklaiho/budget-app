@@ -16,8 +16,8 @@ class IncomesTable extends Table
 
         $this->setDisplayField('description');
 
-        $this->belongsTo('Account');
-        $this->belongsTo('IncomeType');
+        $this->belongsTo('Accounts');
+        $this->belongsTo('IncomeTypes');
     }
 
     public function validationDefault(Validator $validator): Validator

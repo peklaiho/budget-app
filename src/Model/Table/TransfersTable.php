@@ -16,11 +16,11 @@ class TransfersTable extends Table
 
         $this->setDisplayField('description');
 
-        $this->belongsTo('Account', [
+        $this->belongsTo('Accounts', [
             'foreignKey' => 'from_account_id',
             'propertyName' => 'from_account'
         ]);
-        $this->belongsTo('Account', [
+        $this->belongsTo('Accounts', [
             'foreignKey' => 'to_account_id',
             'propertyName' => 'to_account'
         ]);
