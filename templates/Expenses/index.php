@@ -1,7 +1,17 @@
-<table class="table table-sm">
+<div class="row">
+    <div class="col-6">
+        <h2>Expenses</h2>
+    </div>
+    <div class="col-6 text-right">
+        <?= $this->Html->link('New expense', ['controller' => 'Expenses', 'action' => 'add'], ['class' => 'btn btn-primary']) ?>
+    </div>
+</div>
+
+<table class="table table-sm mt-4">
     <thead>
         <tr>
             <th>Date</th>
+            <th>Account</th>
             <th>Type</th>
             <th class="text-right">Amount</th>
             <th>Description</th>
@@ -12,10 +22,11 @@
         <?php foreach ($expenses as $expense): ?>
             <tr>
                 <td><?= $expense->date->i18nFormat('d.M.YYYY') ?></td>
+                <td><?= $expense->account->name ?></td>
                 <td><?= $expense->expense_type->name ?></td>
                 <td class="text-right"><?= $expense->amount ?></td>
                 <td><?= $expense->description ?></td>
-                <td><button type="button" class="btn btn-secondary btn-sm">Edit</button></td>
+                <td><?= $this->Html->link('Edit', ['controller' => 'Expenses', 'action' => 'edit', $expense->id], ['class' => 'btn btn-secondary btn-sm']) ?></td>
             </tr>
         <?php endforeach; ?>
     </tbody>

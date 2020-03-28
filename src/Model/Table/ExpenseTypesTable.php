@@ -18,9 +18,4 @@ class ExpenseTypesTable extends Table
 
         $this->hasMany('Expenses');
     }
-
-    public function validationDefault(Validator $validator): Validator
-    {
-        return $validator;
-    }
 }

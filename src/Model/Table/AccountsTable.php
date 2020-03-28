@@ -19,9 +19,4 @@ class AccountsTable extends Table
         $this->hasMany('Expenses');
         $this->hasMany('Incomes');
     }
-
-    public function validationDefault(Validator $validator): Validator
-    {
-        return $validator;
-    }
 }

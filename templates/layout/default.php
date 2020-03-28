@@ -15,11 +15,19 @@
     <?= $this->Html->script('bootstrap.min') ?>
 </head>
 <body>
-    <nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <?= $this->Html->link('Budget', ['controller' => 'Home', 'action' => 'index'], ['class' => 'navbar-brand']) ?>
 
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <?= $this->Html->link('Expenses', ['controller' => 'Expenses', 'action' => 'index'], ['class' => 'nav-link']) ?>
+                </li>
+            </ul>
+        </div>
     </nav>
     <main>
-        <div class="container">
+        <div class="container mt-4">
             <?= $this->Flash->render() ?>
             <?= $this->fetch('content') ?>
         </div>

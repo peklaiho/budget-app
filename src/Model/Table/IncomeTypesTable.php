@@ -18,9 +18,4 @@ class IncomeTypesTable extends Table
 
         $this->hasMany('Incomes');
     }
-
-    public function validationDefault(Validator $validator): Validator
-    {
-        return $validator;
-    }
 }
