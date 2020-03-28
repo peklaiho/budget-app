@@ -23,4 +23,8 @@ $routes->scope('/', function (RouteBuilder $builder) {
     $builder->connect('/income', ['controller' => 'Incomes', 'action' => 'index']);
     $builder->connect('/income/add', ['controller' => 'Incomes', 'action' => 'add']);
     $builder->connect('/income/edit/*', ['controller' => 'Incomes', 'action' => 'edit']);
+
+    $builder->connect('/transfers', ['controller' => 'Transfers', 'action' => 'index']);
+    $builder->connect('/transfer/add', ['controller' => 'Transfers', 'action' => 'add']);
+    $builder->connect('/transfer/edit/*', ['controller' => 'Transfers', 'action' => 'edit']);
 });

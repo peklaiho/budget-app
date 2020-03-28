@@ -16,11 +16,13 @@ class TransfersTable extends Table
 
         $this->setDisplayField('description');
 
-        $this->belongsTo('Accounts', [
+        $this->belongsTo('FromAccounts', [
+            'className' => 'Accounts',
             'foreignKey' => 'from_account_id',
             'propertyName' => 'from_account'
         ]);
-        $this->belongsTo('Accounts', [
+        $this->belongsTo('ToAccounts', [
+            'className' => 'Accounts',
             'foreignKey' => 'to_account_id',
             'propertyName' => 'to_account'
         ]);
@@ -28,6 +30,32 @@ class TransfersTable extends Table
 
     public function validationDefault(Validator $validator): Validator
     {
+        $validator->add('date', 'custom', [
+            'rule' => function ($value, $context) {
+                $result = preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $value);
+                return boolval($result);
+            },
+            'message' => __('Date is not valid')
+        ]);
+
+        $validator->add('amount', 'custom', [
+            'rule' => function ($value, $context) {
+                if (!filter_var($value, FILTER_VALIDATE_FLOAT)) {
+                    return false;
+                }
+
+                return $value > 0;
+            },
+            'message' => __('Amount is not valid')
+        ]);
+
+        $validator->add('description', 'custom', [
+            'rule' => function ($value, $context) {
+                return strlen(trim($value)) >= 3;
+            },
+            'message' => __('Description is not valid')
+        ]);
+
         return $validator;
     }
 }
