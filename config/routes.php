@@ -27,4 +27,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
     $builder->connect('/transfers', ['controller' => 'Transfers', 'action' => 'index']);
     $builder->connect('/transfer/add', ['controller' => 'Transfers', 'action' => 'add']);
     $builder->connect('/transfer/edit/*', ['controller' => 'Transfers', 'action' => 'edit']);
+
+    $builder->connect('/reports', ['controller' => 'Reports', 'action' => 'index']);
+    $builder->connect('/reports/expenses/*', ['controller' => 'Reports', 'action' => 'expenses']);
 });

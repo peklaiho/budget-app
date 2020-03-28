@@ -20,7 +20,6 @@ class HomeController extends AppController
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();
-
         $rows = $stmt->fetchAll('assoc');
 
         $accounts = [];
