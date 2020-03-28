@@ -19,4 +19,8 @@ $routes->scope('/', function (RouteBuilder $builder) {
     $builder->connect('/expenses', ['controller' => 'Expenses', 'action' => 'index']);
     $builder->connect('/expense/add', ['controller' => 'Expenses', 'action' => 'add']);
     $builder->connect('/expense/edit/*', ['controller' => 'Expenses', 'action' => 'edit']);
+
+    $builder->connect('/income', ['controller' => 'Incomes', 'action' => 'index']);
+    $builder->connect('/income/add', ['controller' => 'Incomes', 'action' => 'add']);
+    $builder->connect('/income/edit/*', ['controller' => 'Incomes', 'action' => 'edit']);
 });

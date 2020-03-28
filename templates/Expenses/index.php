@@ -24,7 +24,7 @@
                 <td><?= $expense->date->i18nFormat('d.M.YYYY') ?></td>
                 <td><?= $expense->account->name ?></td>
                 <td><?= $expense->expense_type->name ?></td>
-                <td class="text-right"><?= $expense->amount ?></td>
+                <td class="text-right"><?= number_format($expense->amount, 2, '.', ' ') ?></td>
                 <td><?= $expense->description ?></td>
                 <td><?= $this->Html->link('Edit', ['controller' => 'Expenses', 'action' => 'edit', $expense->id], ['class' => 'btn btn-secondary btn-sm']) ?></td>
             </tr>

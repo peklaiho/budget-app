@@ -23,6 +23,9 @@
                 <li class="nav-item">
                     <?= $this->Html->link('Expenses', ['controller' => 'Expenses', 'action' => 'index'], ['class' => 'nav-link']) ?>
                 </li>
+                <li class="nav-item">
+                    <?= $this->Html->link('Income', ['controller' => 'Incomes', 'action' => 'index'], ['class' => 'nav-link']) ?>
+                </li>
             </ul>
         </div>
     </nav>

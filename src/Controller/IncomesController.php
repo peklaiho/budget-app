@@ -1,0 +1,65 @@
+<?php
+declare(strict_types=1);
+
+namespace App\Controller;
+
+class IncomesController extends AppController
+{
+    public function index()
+    {
+        $incomes = $this->Incomes->find()
+            ->contain(['Accounts', 'IncomeTypes'])
+            ->order([
+                'Incomes.date' => 'DESC',
+                'Incomes.id' => 'DESC'
+            ]);
+
+        $this->set('incomes', $this->paginate($incomes));
+    }
+
+    public function add()
+    {
+        $income = $this->Incomes->newEmptyEntity();
+
+        $this->addOrEdit($income);
+    }
+
+    public function edit($id)
+    {
+        $income = $this->Incomes->get($id);
+
+        $this->addOrEdit($income);
+    }
+
+    private function addOrEdit($income)
+    {
+        $this->loadModel('IncomeTypes');
+        $types = $this->IncomeTypes->find()
+            ->order(['name' => 'ASC']);
+
+        $this->loadModel('Accounts');
+        $accounts = $this->Accounts->find()
+            ->order(['name' => 'ASC']);
+
+        if ($this->request->is(['post', 'put'])) {
+            $isNew = $income->isNew();
+            $income = $this->Incomes->patchEntity($income, $this->request->getData());
+
+            if ($this->Incomes->save($income)) {
+                if ($isNew) {
+                    $this->Flash->success(__('New income created.'));
+                } else {
+                    $this->Flash->success(__('Income modified.'));
+                }
+
+                return $this->redirect(['action' => 'index']);
+            } else {
+                $this->Flash->error(__('Error while saving income.'));
+            }
+        }
+
+        $this->set('income', $income);
+        $this->set('types', $types);
+        $this->set('accounts', $accounts);
+    }
+}
