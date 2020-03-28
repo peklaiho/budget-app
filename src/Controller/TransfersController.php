@@ -7,14 +7,34 @@ class TransfersController extends AppController
 {
     public function index()
     {
-        $transfers = $this->Transfers->find()
+        $query = $this->Transfers->find()
             ->contain(['FromAccounts', 'ToAccounts'])
             ->order([
                 'Transfers.date' => 'DESC',
                 'Transfers.id' => 'DESC'
             ]);
 
-        $this->set('transfers', $this->paginate($transfers));
+        $fromAccount = $this->request->getQuery('from_account');
+        if ($fromAccount) {
+            $query->where(['from_account_id' => $fromAccount]);
+        }
+
+        $toAccount = $this->request->getQuery('to_account');
+        if ($toAccount) {
+            $query->where(['to_account_id' => $toAccount]);
+        }
+
+        $search = $this->request->getQuery('search');
+        if ($search) {
+            $query->where(fn ($exp, $q) => $exp->like('description', "%$search%"));
+        }
+
+        $this->loadModel('Accounts');
+        $accounts = $this->Accounts->find()
+            ->order(['name' => 'ASC']);
+
+        $this->set('transfers', $this->paginate($query));
+        $this->set('accounts', $accounts);
     }
 
     public function add()

@@ -7,14 +7,39 @@ class IncomesController extends AppController
 {
     public function index()
     {
-        $incomes = $this->Incomes->find()
+        $query = $this->Incomes->find()
             ->contain(['Accounts', 'IncomeTypes'])
             ->order([
                 'Incomes.date' => 'DESC',
                 'Incomes.id' => 'DESC'
             ]);
 
-        $this->set('incomes', $this->paginate($incomes));
+        $account = $this->request->getQuery('account');
+        if ($account) {
+            $query->where(['account_id' => $account]);
+        }
+
+        $type = $this->request->getQuery('type');
+        if ($type) {
+            $query->where(['income_type_id' => $type]);
+        }
+
+        $search = $this->request->getQuery('search');
+        if ($search) {
+            $query->where(fn ($exp, $q) => $exp->like('description', "%$search%"));
+        }
+
+        $this->loadModel('IncomeTypes');
+        $types = $this->IncomeTypes->find()
+            ->order(['name' => 'ASC']);
+
+        $this->loadModel('Accounts');
+        $accounts = $this->Accounts->find()
+            ->order(['name' => 'ASC']);
+
+        $this->set('incomes', $this->paginate($query));
+        $this->set('types', $types);
+        $this->set('accounts', $accounts);
     }
 
     public function add()

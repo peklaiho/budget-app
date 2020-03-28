@@ -7,6 +7,8 @@
     </div>
 </div>
 
+<?= $this->Form->create(null, ['type' => 'get', 'valueSources' => ['query']]); ?>
+
 <table class="table table-sm mt-4">
     <thead>
         <tr>
@@ -16,6 +18,22 @@
             <th class="text-right">Amount</th>
             <th>Description</th>
             <th></th>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <?= $this->Form->select('from_account', $accounts->combine('id', 'name'), ['class' => 'form-control', 'empty' => 'All']) ?>
+            </td>
+            <td>
+                <?= $this->Form->select('to_account', $accounts->combine('id', 'name'), ['class' => 'form-control', 'empty' => 'All']) ?>
+            </td>
+            <td></td>
+            <td>
+                <?= $this->Form->text('search', ['class' => 'form-control', 'placeholder' => 'Search...']) ?>
+            </td>
+            <td>
+                <button class="btn btn-secondary btn-sm" type="submit">Update</button>
+            </td>
         </tr>
     </thead>
     <tbody>
@@ -31,6 +49,8 @@
         <?php endforeach; ?>
     </tbody>
 </table>
+
+<?= $this->Form->end(); ?>
 
 <div class="paginator">
     <span>Page:</span>

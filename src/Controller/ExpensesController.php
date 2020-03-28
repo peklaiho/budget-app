@@ -7,14 +7,39 @@ class ExpensesController extends AppController
 {
     public function index()
     {
-        $expenses = $this->Expenses->find()
+        $query = $this->Expenses->find()
             ->contain(['Accounts', 'ExpenseTypes'])
             ->order([
                 'Expenses.date' => 'DESC',
                 'Expenses.id' => 'DESC'
             ]);
 
-        $this->set('expenses', $this->paginate($expenses));
+        $account = $this->request->getQuery('account');
+        if ($account) {
+            $query->where(['account_id' => $account]);
+        }
+
+        $type = $this->request->getQuery('type');
+        if ($type) {
+            $query->where(['expense_type_id' => $type]);
+        }
+
+        $search = $this->request->getQuery('search');
+        if ($search) {
+            $query->where(fn ($exp, $q) => $exp->like('description', "%$search%"));
+        }
+
+        $this->loadModel('ExpenseTypes');
+        $types = $this->ExpenseTypes->find()
+            ->order(['name' => 'ASC']);
+
+        $this->loadModel('Accounts');
+        $accounts = $this->Accounts->find()
+            ->order(['name' => 'ASC']);
+
+        $this->set('expenses', $this->paginate($query));
+        $this->set('types', $types);
+        $this->set('accounts', $accounts);
     }
 
     public function add()
