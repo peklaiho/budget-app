@@ -1,4 +1,15 @@
-<h2>Expenses for <?= $year ?></h2>
+<h2>Annual expenses</h2>
+
+<?= $this->Form->create(null, ['type' => 'get', 'valueSources' => ['query']]); ?>
+<div class="row mt-4">
+    <div class="col-3">
+        <?= $this->Form->select('year', ['2020' => '2020', '2019' => '2019', '2018' => '2018'], ['class' => 'form-control']) ?>
+    </div>
+    <div class="col-9 text-right">
+        <button type="submit" class="btn btn-secondary">Update</button>
+    </div>
+</div>
+<?= $this->Form->end(); ?>
 
 <table class="table table-sm mt-4">
     <thead>
@@ -33,11 +44,11 @@
                         } ?>
                     </td>
                 <?php endfor; ?>
-                <td class="text-right small">
+                <td class="text-right small"><strong>
                     <?php if ($total > 0) {
                         echo number_format($total, 2, '.', ' ');
                     } ?>
-                </td>
+                </strong></td>
             </tr>
         <?php endforeach; ?>
     </tbody>
@@ -45,7 +56,7 @@
         <tr>
             <th>Total</th>
             <?php for ($i = 1; $i <= 12; $i++): ?>
-                <th class="text-right small">
+                <th class="text-right small"><strong>
                     <?php $total = 0;
                         foreach ($rows as $row) {
                             $total += $row["m$i"];
@@ -53,7 +64,7 @@
                         if ($total > 0) {
                             echo number_format($total, 2, '.', ' ');
                     } ?>
-                </th>
+                </strong></th>
             <?php endfor; ?>
             <th></th>
         </tr>

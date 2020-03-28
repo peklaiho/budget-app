@@ -36,7 +36,7 @@
         </div>
     </nav>
     <main>
-        <div class="container mt-4">
+        <div class="container mt-4 mb-4">
             <?= $this->Flash->render() ?>
             <?= $this->fetch('content') ?>
         </div>

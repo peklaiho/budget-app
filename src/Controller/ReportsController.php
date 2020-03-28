@@ -12,8 +12,13 @@ class ReportsController extends AppController
 
     }
 
-    public function expenses($year = 2020)
+    public function expenses()
     {
+        $year = $this->request->getQuery('year');
+        if (!$year) {
+            $year = date('Y');
+        }
+
         $conn = ConnectionManager::get('default');
 
         $sql = "SELECT t.name";
@@ -27,6 +32,5 @@ class ReportsController extends AppController
         $rows = $stmt->fetchAll('assoc');
 
         $this->set('rows', $rows);
-        $this->set('year', $year);
     }
 }
