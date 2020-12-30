@@ -39,7 +39,7 @@
     <tbody>
         <?php foreach ($transfers as $transfer): ?>
             <tr>
-                <td><?= $transfer->date->i18nFormat('d.M.YYYY') ?></td>
+                <td><?= $transfer->date->i18nFormat('d.M.yyyy') ?></td>
                 <td><?= $transfer->from_account->name ?></td>
                 <td><?= $transfer->to_account->name ?></td>
                 <td class="text-right"><?= number_format($transfer->amount, 2, '.', ' ') ?></td>

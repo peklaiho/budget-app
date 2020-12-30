@@ -39,7 +39,7 @@
     <tbody>
         <?php foreach ($incomes as $income): ?>
             <tr>
-                <td><?= $income->date->i18nFormat('d.M.YYYY') ?></td>
+                <td><?= $income->date->i18nFormat('d.M.yyyy') ?></td>
                 <td><?= $income->account->name ?></td>
                 <td><?= $income->income_type->name ?></td>
                 <td class="text-right"><?= number_format($income->amount, 2, '.', ' ') ?></td>

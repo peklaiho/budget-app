@@ -39,7 +39,7 @@
     <tbody>
         <?php foreach ($expenses as $expense): ?>
             <tr>
-                <td><?= $expense->date->i18nFormat('d.M.YYYY') ?></td>
+                <td><?= $expense->date->i18nFormat('d.M.yyyy') ?></td>
                 <td><?= $expense->account->name ?></td>
                 <td><?= $expense->expense_type->name ?></td>
                 <td class="text-right"><?= number_format($expense->amount, 2, '.', ' ') ?></td>
