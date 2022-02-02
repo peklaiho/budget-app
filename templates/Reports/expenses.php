@@ -3,7 +3,7 @@
 <?= $this->Form->create(null, ['type' => 'get', 'valueSources' => ['query']]); ?>
 <div class="row mt-4">
     <div class="col-3">
-        <?= $this->Form->select('year', ['2021' => '2021', '2020' => '2020', '2019' => '2019', '2018' => '2018'], ['class' => 'form-control']) ?>
+        <?= $this->Form->select('year', ['2022' => '2022', '2021' => '2021', '2020' => '2020', '2019' => '2019', '2018' => '2018'], ['class' => 'form-control']) ?>
     </div>
     <div class="col-9 text-right">
         <button type="submit" class="btn btn-secondary">Update</button>
