@@ -31,11 +31,13 @@ class ExpensesController extends AppController
 
         $this->loadModel('ExpenseTypes');
         $types = $this->ExpenseTypes->find()
-            ->order(['name' => 'ASC']);
+            ->order(['name' => 'ASC'])
+            ->all();
 
         $this->loadModel('Accounts');
         $accounts = $this->Accounts->find()
-            ->order(['name' => 'ASC']);
+            ->order(['name' => 'ASC'])
+            ->all();
 
         $this->set('expenses', $this->paginate($query));
         $this->set('types', $types);
@@ -60,11 +62,13 @@ class ExpensesController extends AppController
     {
         $this->loadModel('ExpenseTypes');
         $types = $this->ExpenseTypes->find()
-            ->order(['name' => 'ASC']);
+            ->order(['name' => 'ASC'])
+            ->all();
 
         $this->loadModel('Accounts');
         $accounts = $this->Accounts->find()
-            ->order(['name' => 'ASC']);
+            ->order(['name' => 'ASC'])
+            ->all();
 
         if ($this->request->is(['post', 'put'])) {
             $isNew = $expense->isNew();

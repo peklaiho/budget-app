@@ -31,7 +31,8 @@ class TransfersController extends AppController
 
         $this->loadModel('Accounts');
         $accounts = $this->Accounts->find()
-            ->order(['name' => 'ASC']);
+            ->order(['name' => 'ASC'])
+            ->all();
 
         $this->set('transfers', $this->paginate($query));
         $this->set('accounts', $accounts);
@@ -55,7 +56,8 @@ class TransfersController extends AppController
     {
         $this->loadModel('Accounts');
         $accounts = $this->Accounts->find()
-            ->order(['name' => 'ASC']);
+            ->order(['name' => 'ASC'])
+            ->all();
 
         if ($this->request->is(['post', 'put'])) {
             $isNew = $transfer->isNew();

@@ -31,11 +31,13 @@ class IncomesController extends AppController
 
         $this->loadModel('IncomeTypes');
         $types = $this->IncomeTypes->find()
-            ->order(['name' => 'ASC']);
+            ->order(['name' => 'ASC'])
+            ->all();
 
         $this->loadModel('Accounts');
         $accounts = $this->Accounts->find()
-            ->order(['name' => 'ASC']);
+            ->order(['name' => 'ASC'])
+            ->all();
 
         $this->set('incomes', $this->paginate($query));
         $this->set('types', $types);
@@ -60,11 +62,13 @@ class IncomesController extends AppController
     {
         $this->loadModel('IncomeTypes');
         $types = $this->IncomeTypes->find()
-            ->order(['name' => 'ASC']);
+            ->order(['name' => 'ASC'])
+            ->all();
 
         $this->loadModel('Accounts');
         $accounts = $this->Accounts->find()
-            ->order(['name' => 'ASC']);
+            ->order(['name' => 'ASC'])
+            ->all();
 
         if ($this->request->is(['post', 'put'])) {
             $isNew = $income->isNew();
