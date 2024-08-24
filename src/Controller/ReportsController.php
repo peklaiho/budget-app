@@ -14,12 +14,16 @@ class ReportsController extends AppController
 
     public function expenses()
     {
+        $currentYear = date('Y');
+
         $year = $this->request->getQuery('year');
         if (!$year) {
-            $year = date('Y');
+            $year = $currentYear;
         }
 
         $conn = ConnectionManager::get('default');
+
+        // Get expense types
 
         $sql = "SELECT t.name";
         for ($i = 1; $i <= 12; $i++) {
@@ -31,6 +35,24 @@ class ReportsController extends AppController
         $stmt->execute();
         $rows = $stmt->fetchAll('assoc');
 
+        // Get range of years
+
+        $sql = 'SELECT MIN(YEAR(date)) FROM expenses';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $firstYear = $stmt->fetch('num');
+
+        if ($firstYear) {
+            $yearRange = range($firstYear[0], $currentYear);
+            $years = array_combine($yearRange, $yearRange);
+        } else {
+            $years = [
+                $currentYear => $currentYear
+            ];
+        }
+
         $this->set('rows', $rows);
+        $this->set('year', $year);
+        $this->set('years', $years);
     }
 }
