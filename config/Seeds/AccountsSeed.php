@@ -18,7 +18,7 @@ class AccountsSeed extends AbstractSeed
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $data = [
             ['id' => 1, 'name' => 'Cash', 'start_money' => 0],

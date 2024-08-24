@@ -18,7 +18,7 @@ class ExpenseTypesSeed extends AbstractSeed
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $data = [
             // This has to be added manually because auto-increment starts at 1 :(
