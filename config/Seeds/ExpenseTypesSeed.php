@@ -61,6 +61,7 @@ class ExpenseTypesSeed extends AbstractSeed
             ['id' => 36, 'name' => 'Business', 'common' => 0],
             ['id' => 37, 'name' => 'Charity', 'common' => 0],
             ['id' => 38, 'name' => 'Dating', 'common' => 0],
+            ['id' => 39, 'name' => 'Plants', 'common' => 0],
         ];
 
         $table = $this->table('expense_types');
