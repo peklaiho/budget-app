@@ -28,7 +28,7 @@ class ExpenseTypesSeed extends AbstractSeed
             ['id' => 3, 'name' => 'Communications', 'common' => 1],
             ['id' => 4, 'name' => 'Entertainment', 'common' => 1],
             ['id' => 5, 'name' => 'Finance', 'common' => 1],
-            ['id' => 6, 'name' => 'Food (Restairant)', 'common' => 1],
+            ['id' => 6, 'name' => 'Food (Restaurant)', 'common' => 1],
             ['id' => 7, 'name' => 'Food (Store)', 'common' => 1],
             ['id' => 8, 'name' => 'Gambling', 'common' => 0],
             ['id' => 9, 'name' => 'General', 'common' => 1],
