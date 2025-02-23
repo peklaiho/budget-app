@@ -18,8 +18,7 @@ class HomeController extends AppController
             "(SELECT SUM(amount) FROM transfers AS tf WHERE tf.to_account_id = ac.id) as transfer_to " .
             "FROM accounts AS ac ORDER BY ac.name";
 
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
+        $stmt = $conn->execute($sql);
         $rows = $stmt->fetchAll('assoc');
 
         $accounts = [];

@@ -29,8 +29,7 @@ class TransfersController extends AppController
             $query->where(fn ($exp, $q) => $exp->like('description', "%$search%"));
         }
 
-        $this->loadModel('Accounts');
-        $accounts = $this->Accounts->find()
+        $accounts = $this->fetchTable('Accounts')->find()
             ->order(['name' => 'ASC'])
             ->all();
 
@@ -54,8 +53,7 @@ class TransfersController extends AppController
 
     private function addOrEdit($transfer)
     {
-        $this->loadModel('Accounts');
-        $accounts = $this->Accounts->find()
+        $accounts = $this->fetchTable('Accounts')->find()
             ->order(['name' => 'ASC'])
             ->all();
 

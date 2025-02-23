@@ -52,7 +52,7 @@ findCliPhp() {
 realname="$0"
 if [ -L "$realname" ] 
 then
-	realname=$(readlink -f "$0")
+    realname=$(readlink -f "$0")
 fi
 
 CONSOLE=$(dirname -- "$(canonicalize "$realname")")

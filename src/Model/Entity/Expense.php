@@ -7,7 +7,7 @@ use Cake\ORM\Entity;
 
 class Expense extends Entity
 {
-    protected $_accessible = [
+    protected array $_accessible = [
         'account_id' => true,
         'expense_type_id' => true,
         'date' => true,

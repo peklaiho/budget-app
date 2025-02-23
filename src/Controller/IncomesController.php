@@ -29,13 +29,11 @@ class IncomesController extends AppController
             $query->where(fn ($exp, $q) => $exp->like('description', "%$search%"));
         }
 
-        $this->loadModel('IncomeTypes');
-        $types = $this->IncomeTypes->find()
+        $types = $this->fetchTable('IncomeTypes')->find()
             ->order(['name' => 'ASC'])
             ->all();
 
-        $this->loadModel('Accounts');
-        $accounts = $this->Accounts->find()
+        $accounts = $this->fetchTable('Accounts')->find()
             ->order(['name' => 'ASC'])
             ->all();
 
@@ -60,13 +58,11 @@ class IncomesController extends AppController
 
     private function addOrEdit($income)
     {
-        $this->loadModel('IncomeTypes');
-        $types = $this->IncomeTypes->find()
+        $types = $this->fetchTable('IncomeTypes')->find()
             ->order(['name' => 'ASC'])
             ->all();
 
-        $this->loadModel('Accounts');
-        $accounts = $this->Accounts->find()
+        $accounts = $this->fetchTable('Accounts')->find()
             ->order(['name' => 'ASC'])
             ->all();
 

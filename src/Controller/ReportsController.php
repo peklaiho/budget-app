@@ -31,15 +31,13 @@ class ReportsController extends AppController
         }
         $sql .= " FROM expense_types AS t ORDER BY t.name";
 
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
+        $stmt = $conn->execute($sql);
         $rows = $stmt->fetchAll('assoc');
 
         // Get range of years
 
         $sql = 'SELECT MIN(YEAR(date)) FROM expenses';
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
+        $stmt = $conn->execute($sql);
         $firstYear = $stmt->fetch('num');
 
         if ($firstYear) {

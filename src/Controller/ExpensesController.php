@@ -29,13 +29,11 @@ class ExpensesController extends AppController
             $query->where(fn ($exp, $q) => $exp->like('description', "%$search%"));
         }
 
-        $this->loadModel('ExpenseTypes');
-        $types = $this->ExpenseTypes->find()
+        $types = $this->fetchTable('ExpenseTypes')->find()
             ->order(['name' => 'ASC'])
             ->all();
 
-        $this->loadModel('Accounts');
-        $accounts = $this->Accounts->find()
+        $accounts = $this->fetchTable('Accounts')->find()
             ->order(['name' => 'ASC'])
             ->all();
 
@@ -60,13 +58,11 @@ class ExpensesController extends AppController
 
     private function addOrEdit($expense)
     {
-        $this->loadModel('ExpenseTypes');
-        $types = $this->ExpenseTypes->find()
+        $types = $this->fetchTable('ExpenseTypes')->find()
             ->order(['name' => 'ASC'])
             ->all();
 
-        $this->loadModel('Accounts');
-        $accounts = $this->Accounts->find()
+        $accounts = $this->fetchTable('Accounts')->find()
             ->order(['name' => 'ASC'])
             ->all();
 
